@@ -9,7 +9,7 @@ using Newtonsoft.Json.Linq;
 namespace SDK.Versions.V_0_1
 {
     /// <summary>
-    /// file update-file-entry modelId=\"...\" revisionIndex=\"...\" versionIndex=\"...\" commentsPath=\"...\"
+    /// file update-file-entry modelId=\"...\" revisionIndex=\"...\" commentsPath=\"...\"
     /// </summary>
     public class File_UpdateFileEntry : Command_0_1
     {
@@ -21,7 +21,7 @@ namespace SDK.Versions.V_0_1
             {
                 new List<Argument>()
                 {
-                    new BinaryArgument("modelId"), new BinaryArgument("revisionIndex"), new BinaryArgument("versionIndex"), new BinaryArgument("commentsPath")
+                    new BinaryArgument("modelId"), new BinaryArgument("revisionIndex"), new BinaryArgument("commentsPath")
                 }
             }))
 
@@ -38,15 +38,7 @@ namespace SDK.Versions.V_0_1
                     return;
                 }
                 _Arguments.RemoveFirst();
-
-                if (!int.TryParse((_Arguments.First.Value as BinaryArgument).Value, out int VersionIndex) || VersionIndex < 0)
-                {
-                    bErrorOccuredInChildConstructor = true;
-                    Utilities.Error("Version index must be a natural number.");
-                    return;
-                }
-                _Arguments.RemoveFirst();
-
+                
                 string CommentsFileContent = null;
                 var CommentsFilePath = (_Arguments.First.Value as BinaryArgument).Value;
                 _Arguments.RemoveFirst();
@@ -90,7 +82,7 @@ namespace SDK.Versions.V_0_1
                     ["generateUploadUrl"] = false,
                     ["fileEntryComments"] = Comments
                 };
-                CreatedRequest = new ApiHttpRequest(BaseApiUrl, "/file/models/" + ModelID + "/revisions/" + RevisionIndex + "/versions/" + VersionIndex + "/raw").Post(Request);
+                CreatedRequest = new ApiHttpRequest(BaseApiUrl, "/file/models/" + ModelID + "/revisions/" + RevisionIndex + "/raw").Post(Request);
             }
         }
 
@@ -103,7 +95,7 @@ namespace SDK.Versions.V_0_1
         {
             return new List<(int, string)>
             {
-                (2, "file update-file-entry modelId=\"...\" revisionIndex=\"...\" versionIndex=\"...\" commentsPath=\"...\""),
+                (2, "file update-file-entry modelId=\"...\" revisionIndex=\"...\" commentsPath=\"...\""),
                 (0, "\n")
             };
         }

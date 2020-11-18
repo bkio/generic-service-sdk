@@ -5,7 +5,7 @@ using System.Collections.Generic;
 namespace SDK.Versions.V_0_1
 {
     /// <summary>
-    /// file delete-files modelId=\"...\" revisionIndex=\"...\" versionIndex=\"...\"
+    /// file delete-files modelId=\"...\" revisionIndex=\"...\"
     /// </summary>
     public class File_DeleteFiles : Command_0_1
     {
@@ -15,7 +15,7 @@ namespace SDK.Versions.V_0_1
             {
                 new List<Argument>()
                 {
-                    new BinaryArgument("modelId"), new BinaryArgument("revisionIndex"), new BinaryArgument("versionIndex")
+                    new BinaryArgument("modelId"), new BinaryArgument("revisionIndex")
                 }
             }))
 
@@ -32,17 +32,9 @@ namespace SDK.Versions.V_0_1
                     return;
                 }
                 _Arguments.RemoveFirst();
-
-                if (!int.TryParse((_Arguments.First.Value as BinaryArgument).Value, out int VersionIndex) || VersionIndex < 0)
-                {
-                    bErrorOccuredInChildConstructor = true;
-                    Utilities.Error("Version index must be a natural number.");
-                    return;
-                }
-                _Arguments.RemoveFirst();
-
+                
                 //Deletes all files; raw, processed.
-                CreatedRequest = new ApiHttpRequest(BaseApiUrl, "/file/models/" + ModelID + "/revisions/" + RevisionIndex + "/versions/" + VersionIndex + "/raw").Delete();
+                CreatedRequest = new ApiHttpRequest(BaseApiUrl, "/file/models/" + ModelID + "/revisions/" + RevisionIndex + "/raw").Delete();
             }
         }
 
@@ -55,7 +47,7 @@ namespace SDK.Versions.V_0_1
         {
             return new List<(int, string)>
             {
-                (2, "file delete-files modelId=\"...\" revisionIndex=\"...\" versionIndex=\"...\""),
+                (2, "file delete-files modelId=\"...\" revisionIndex=\"...\""),
                 (0, "\n")
             };
         }

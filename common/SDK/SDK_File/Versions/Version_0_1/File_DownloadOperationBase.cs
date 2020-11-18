@@ -8,7 +8,6 @@ using System.Threading;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
-
 namespace SDK.Versions.V_0_1
 {
     public class File_DownloadOperationBase : Command_0_1
@@ -19,7 +18,7 @@ namespace SDK.Versions.V_0_1
             {
                 new List<Argument>()
                 {
-                    new BinaryArgument("destinationPath"), new BinaryArgument("modelId"), new BinaryArgument("revisionIndex"), new BinaryArgument("versionIndex")
+                    new BinaryArgument("destinationPath"), new BinaryArgument("modelId"), new BinaryArgument("revisionIndex")
                 }
             }))
 
@@ -40,15 +39,7 @@ namespace SDK.Versions.V_0_1
                 }
                 _Arguments.RemoveFirst();
 
-                if (!int.TryParse((_Arguments.First.Value as BinaryArgument).Value, out int VersionIndex) || VersionIndex < 0)
-                {
-                    bErrorOccuredInChildConstructor = true;
-                    Utilities.Error("Version index must be a natural number.");
-                    return;
-                }
-                _Arguments.RemoveFirst();
-
-                CreatedRequest = new ApiHttpRequest(BaseApiUrl, "/file/models/" + ModelID + "/revisions/" + RevisionIndex + "/versions/" + VersionIndex + _UrlAfterVersionIxPath).Get();
+                CreatedRequest = new ApiHttpRequest(BaseApiUrl, "/file/models/" + ModelID + "/revisions/" + RevisionIndex + _UrlAfterVersionIxPath).Get();
             }
         }
 
@@ -149,10 +140,10 @@ namespace SDK.Versions.V_0_1
         {
             return new List<(int, string)>
             {
-                (2, "file download-raw-file destinationPath=\"...\" modelId=\"...\" revisionIndex=\"...\" versionIndex=\"...\""),
-                (2, "file download-hierarchy-file destinationPath=\"...\" modelId=\"...\" revisionIndex=\"...\" versionIndex=\"...\""),
-                (2, "file download-geometry-file destinationPath=\"...\" modelId=\"...\" revisionIndex=\"...\" versionIndex=\"...\""),
-                (2, "file download-metadata-file destinationPath=\"...\" modelId=\"...\" revisionIndex=\"...\" versionIndex=\"...\""),
+                (2, "file download-raw-file destinationPath=\"...\" modelId=\"...\" revisionIndex=\"...\""),
+                (2, "file download-hierarchy-file destinationPath=\"...\" modelId=\"...\" revisionIndex=\"...\""),
+                (2, "file download-geometry-file destinationPath=\"...\" modelId=\"...\" revisionIndex=\"...\""),
+                (2, "file download-metadata-file destinationPath=\"...\" modelId=\"...\" revisionIndex=\"...\""),
                 (0, "\n")
             };
         }
