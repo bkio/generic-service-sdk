@@ -6,7 +6,7 @@ using System.Collections.Generic;
 namespace SDK.Versions.V_0_1
 {
     /// <summary>
-    /// sdk_core auth delete-user [userId=\"...\"]
+    /// auth delete-user [userId=\"...\"]
     /// </summary>
     public class Auth_DeleteUser : Command_0_1
     {

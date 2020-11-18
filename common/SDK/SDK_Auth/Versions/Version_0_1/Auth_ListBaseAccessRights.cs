@@ -8,7 +8,7 @@ using Newtonsoft.Json;
 namespace SDK.Versions.V_0_1
 {
     /// <summary>
-    /// sdk_core auth list-base-access-rights userId=\"...\"
+    /// auth list-base-access-rights userId=\"...\"
     /// </summary>
     public class Auth_ListBaseAccessRights : Command_0_1
     {

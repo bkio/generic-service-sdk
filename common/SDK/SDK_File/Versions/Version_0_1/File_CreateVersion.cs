@@ -9,7 +9,7 @@ using Newtonsoft.Json.Linq;
 namespace SDK.Versions.V_0_1
 {
     /// <summary>
-    /// sdk_core file create-version modelId=\"...\" revisionIndex=\"...\" name=\"...\" [commentsPath=\"...\"]
+    /// file create-version modelId=\"...\" revisionIndex=\"...\" name=\"...\" [commentsPath=\"...\"]
     /// </summary>
     public class File_CreateVersion : Command_0_1
     {

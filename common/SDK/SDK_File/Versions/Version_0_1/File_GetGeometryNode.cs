@@ -6,7 +6,7 @@ using System.Collections.Generic;
 namespace SDK.Versions.V_0_1
 {
     /// <summary>
-    /// sdk_core file get-geometry-node modelId=\"...\" revisionIndex=\"...\" versionIndex=\"...\" nodeId=\"...\"
+    /// file get-geometry-node modelId=\"...\" revisionIndex=\"...\" versionIndex=\"...\" nodeId=\"...\"
     /// </summary>
     public class File_GetGeometryNode : Command_0_1
     {

@@ -6,7 +6,7 @@ using System.Collections.Generic;
 namespace SDK.Versions.V_0_1
 {
     /// <summary>
-    /// sdk_core file get-hierarchy-node modelId=\"...\" revisionIndex=\"...\" versionIndex=\"...\" nodeId=\"...\"
+    /// file get-hierarchy-node modelId=\"...\" revisionIndex=\"...\" versionIndex=\"...\" nodeId=\"...\"
     /// </summary>
     public class File_GetHierarchyNode : Command_0_1
     {

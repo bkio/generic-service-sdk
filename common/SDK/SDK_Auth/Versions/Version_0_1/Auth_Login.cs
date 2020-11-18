@@ -6,10 +6,10 @@ using System.Text.RegularExpressions;
 namespace SDK.Versions.V_0_1
 {
     /// <summary>
-    /// sdk_core auth login sso
-    /// sdk_core auth login apiKey=\"...\"
-    /// sdk_core auth login email=\"...\" passwordMd5=\"...\"
-    /// sdk_core auth login name=\"...\" passwordMd5=\"...\"
+    /// auth login sso
+    /// auth login apiKey=\"...\"
+    /// auth login email=\"...\" passwordMd5=\"...\"
+    /// auth login name=\"...\" passwordMd5=\"...\"
     /// </summary>
     public class Auth_Login:Command_0_1
     {

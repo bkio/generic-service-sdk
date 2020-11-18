@@ -6,7 +6,7 @@ using System.Collections.Generic;
 namespace SDK.Versions.V_0_1
 {
     /// <summary>
-    /// sdk_core auth get-user-info [userId=\"...\"]
+    /// auth get-user-info [userId=\"...\"]
     /// </summary>
     public class Auth_GetUserInfo : Command_0_1
     {

@@ -7,7 +7,7 @@ using Newtonsoft.Json.Linq;
 namespace SDK.Versions.V_0_1
 {
     /// <summary>
-    /// sdk_core file get-version-info modelId=\"...\" revisionIndex=\"...\" versionIndex=\"...\"
+    /// file get-version-info modelId=\"...\" revisionIndex=\"...\" versionIndex=\"...\"
     /// </summary>
     public class File_GetVersionInfo : Command_0_1
     {

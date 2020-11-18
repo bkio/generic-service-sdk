@@ -9,7 +9,7 @@ using Newtonsoft.Json.Linq;
 namespace SDK.Versions.V_0_1
 {
     /// <summary>
-    /// sdk_core file update-file-entry modelId=\"...\" revisionIndex=\"...\" versionIndex=\"...\" commentsPath=\"...\"
+    /// file update-file-entry modelId=\"...\" revisionIndex=\"...\" versionIndex=\"...\" commentsPath=\"...\"
     /// </summary>
     public class File_UpdateFileEntry : Command_0_1
     {

@@ -7,9 +7,9 @@ using System.Net;
 namespace SDK.Versions.V_0_1
 {
     /// <summary>
-    /// sdk_core auth delete-access-method [userId=\"...\"] apiKey=\"...\"
-    /// sdk_core auth delete-access-method [userId=\"...\"] email=\"...\" passwordMd5=\"...\"
-    /// sdk_core auth delete-access-method [userId=\"...\"] name=\"...\" passwordMd5=\"...\"
+    /// auth delete-access-method [userId=\"...\"] apiKey=\"...\"
+    /// auth delete-access-method [userId=\"...\"] email=\"...\" passwordMd5=\"...\"
+    /// auth delete-access-method [userId=\"...\"] name=\"...\" passwordMd5=\"...\"
     /// </summary>
     public class Auth_DeleteAccessMethod : Command_0_1
     {

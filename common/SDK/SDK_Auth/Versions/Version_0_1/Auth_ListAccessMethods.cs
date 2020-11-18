@@ -6,7 +6,7 @@ using System.Collections.Generic;
 namespace SDK.Versions.V_0_1
 {
     /// <summary>
-    /// sdk_core auth list-access-methods [userId=\"...\"]
+    /// auth list-access-methods [userId=\"...\"]
     /// </summary>
     public class Auth_ListAccessMethods : Command_0_1
     {

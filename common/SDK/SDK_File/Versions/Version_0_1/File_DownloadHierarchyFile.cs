@@ -3,7 +3,7 @@
 namespace SDK.Versions.V_0_1
 {
     /// <summary>
-    /// sdk_core file download-hierarchy-file destinationPath=\"...\" modelId=\"...\" revisionIndex=\"...\" versionIndex=\"...\"
+    /// file download-hierarchy-file destinationPath=\"...\" modelId=\"...\" revisionIndex=\"...\" versionIndex=\"...\"
     /// </summary>
     internal class File_DownloadHierarchyFile : File_DownloadOperationBase
     {

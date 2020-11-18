@@ -8,7 +8,7 @@ using Newtonsoft.Json.Linq;
 namespace SDK.Versions.V_0_1
 {
     /// <summary>
-    /// sdk_core auth update-user-info [userId=\"...\"] email=\"...\" name=\"...\"
+    /// auth update-user-info [userId=\"...\"] email=\"...\" name=\"...\"
     /// </summary>
     public class Auth_UpdateUserInfo : Command_0_1
     {

@@ -3,7 +3,7 @@
 namespace SDK.Versions.V_0_1
 {
     /// <summary>
-    /// sdk_core file download-metadata-file destinationPath=\"...\" modelId=\"...\" revisionIndex=\"...\" versionIndex=\"...\"
+    /// file download-metadata-file destinationPath=\"...\" modelId=\"...\" revisionIndex=\"...\" versionIndex=\"...\"
     /// </summary>
     internal class File_DownloadMetadataFile : File_DownloadOperationBase
     {
