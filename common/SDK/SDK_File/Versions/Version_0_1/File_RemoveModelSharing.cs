@@ -8,7 +8,7 @@ using Newtonsoft.Json.Linq;
 namespace SDK.Versions.V_0_1
 {
     /// <summary>
-    /// sdk_core file remove-model-sharing modelId=\"...\" [userId=\"...\"]
+    /// file remove-model-sharing modelId=\"...\" [userId=\"...\"]
     /// </summary>
     public class File_RemoveModelSharing : Command_0_1
     {

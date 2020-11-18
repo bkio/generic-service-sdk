@@ -12,7 +12,7 @@ using Newtonsoft.Json.Linq;
 namespace SDK.Versions.V_0_1
 {
     /// <summary>
-    /// sdk_core file upload-raw-file sourcePath=\"...\" modelId=\"...\" revisionIndex=\"...\" versionIndex=\"...\" fileEntryName=\"...\" fileType=\"...\" dataSource=\"...\" [zipMainAssemblyFileNameIfAny=\"...\"]
+    /// file upload-raw-file sourcePath=\"...\" modelId=\"...\" revisionIndex=\"...\" versionIndex=\"...\" fileEntryName=\"...\" fileType=\"...\" dataSource=\"...\" [zipMainAssemblyFileNameIfAny=\"...\"]
     /// </summary>
     public class File_UploadRawFile : Command_0_1
     {

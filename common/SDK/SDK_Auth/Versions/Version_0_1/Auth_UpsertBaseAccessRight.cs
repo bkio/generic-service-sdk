@@ -8,7 +8,7 @@ using Newtonsoft.Json.Linq;
 namespace SDK.Versions.V_0_1
 {
     /// <summary>
-    /// sdk_core auth upsert-base-access-right [userId=\"...\"] path=\"...\" rights=\"...\"
+    /// auth upsert-base-access-right [userId=\"...\"] path=\"...\" rights=\"...\"
     ///     A single path=\"...\" rights=\"...\" pair must be provided.
     /// </summary>
     public class Auth_UpsertBaseAccessRight : Command_0_1

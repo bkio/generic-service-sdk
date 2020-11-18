@@ -7,9 +7,9 @@ using Newtonsoft.Json.Linq;
 namespace SDK.Versions.V_0_1
 {
     /// <summary>
-    /// sdk_core auth create-access-method [userId=\"...\"] newApiKey
-    /// sdk_core auth create-access-method [userId=\"...\"] email=\"...\" passwordMd5=\"...\"
-    /// sdk_core auth create-access-method [userId=\"...\"] name=\"...\" passwordMd5=\"...\"
+    /// auth create-access-method [userId=\"...\"] newApiKey
+    /// auth create-access-method [userId=\"...\"] email=\"...\" passwordMd5=\"...\"
+    /// auth create-access-method [userId=\"...\"] name=\"...\" passwordMd5=\"...\"
     /// </summary>
     public class Auth_CreateAccessMethod : Command_0_1
     {

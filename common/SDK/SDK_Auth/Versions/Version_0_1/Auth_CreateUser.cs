@@ -7,7 +7,7 @@ using Newtonsoft.Json.Linq;
 namespace SDK.Versions.V_0_1
 {
     /// <summary>
-    /// sdk_core auth create-user email=\"...\" name=\"...\"
+    /// auth create-user email=\"...\" name=\"...\"
     /// </summary>
     public class Auth_CreateUser : Command_0_1
     {

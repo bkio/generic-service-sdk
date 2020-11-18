@@ -9,7 +9,7 @@ using Newtonsoft.Json.Linq;
 namespace SDK.Versions.V_0_1
 {
     /// <summary>
-    /// sdk_core file create-model name=\"...\" [metadataPath=\"...\"] [commentsPath=\"...\"]
+    /// file create-model name=\"...\" [metadataPath=\"...\"] [commentsPath=\"...\"]
     ///     metadataPath: File path to the model metadata json structure.
     ///     Example content: [ { \"metadataKey\": \"example\", \"metadata-value\": [\"value1\", \"value2\"] } ]
     ///     commentsPath: File path to the basic model comments text file. Each line in the file will be parsed as a new comment entry.

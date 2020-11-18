@@ -8,7 +8,7 @@ using Newtonsoft.Json.Linq;
 namespace SDK.Versions.V_0_1
 {
     /// <summary>
-    /// sdk_core file set-model-sharing modelId=\"...\" [shareWithAll] [userIds=\"...\"] [emails=\"...\"]
+    /// file set-model-sharing modelId=\"...\" [shareWithAll] [userIds=\"...\"] [emails=\"...\"]
     /// </summary>
     public class File_SetModelSharing : Command_0_1
     {

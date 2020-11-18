@@ -6,7 +6,7 @@ using System.Collections.Generic;
 namespace SDK.Versions.V_0_1
 {
     /// <summary>
-    /// sdk_core auth list-registered-email-addresses
+    /// auth list-registered-email-addresses
     /// </summary>
     public class Auth_ListEmailAddresses : Command_0_1
     {

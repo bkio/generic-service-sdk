@@ -6,7 +6,7 @@ using System.Collections.Generic;
 namespace SDK.Versions.V_0_1
 {
     /// <summary>
-    /// sdk_core file get-revision-info modelId=\"...\" revisionIndex=\"...\"
+    /// file get-revision-info modelId=\"...\" revisionIndex=\"...\"
     /// </summary>
     public class File_GetRevisionInfo : Command_0_1
     {

@@ -6,7 +6,7 @@ using System.Collections.Generic;
 namespace SDK.Versions.V_0_1
 {
     /// <summary>
-    /// sdk_core auth delete-base-access-right [userId=\"...\"] path=\"...\"
+    /// auth delete-base-access-right [userId=\"...\"] path=\"...\"
     ///     A single path=\"...\" must be provided.
     /// </summary>
     public class Auth_DeleteBaseAccessRight : Command_0_1

@@ -6,7 +6,7 @@ using System.Collections.Generic;
 namespace SDK.Versions.V_0_1
 {
     /// <summary>
-    /// sdk_core auth list-users
+    /// auth list-users
     /// </summary>
     public class Auth_ListUsers : Command_0_1
     {

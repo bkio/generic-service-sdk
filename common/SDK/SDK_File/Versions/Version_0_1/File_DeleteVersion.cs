@@ -6,7 +6,7 @@ using System.Collections.Generic;
 namespace SDK.Versions.V_0_1
 {
     /// <summary>
-    /// sdk_core file delete-version modelId=\"...\" revisionIndex=\"...\" versionIndex=\"...\"
+    /// file delete-version modelId=\"...\" revisionIndex=\"...\" versionIndex=\"...\"
     /// </summary>
     public class File_DeleteVersion : Command_0_1
     {

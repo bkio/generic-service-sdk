@@ -7,7 +7,7 @@ using Newtonsoft.Json.Linq;
 namespace SDK.Versions.V_0_1
 {
     /// <summary>
-    /// sdk_core file delete-model modelId=\"...\"
+    /// file delete-model modelId=\"...\"
     /// </summary>
     public class File_DeleteModel : Command_0_1
     {

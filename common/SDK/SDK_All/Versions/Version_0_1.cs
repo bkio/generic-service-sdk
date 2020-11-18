@@ -200,7 +200,7 @@ namespace SDK.Versions
 
         private int OperateCommands(Arguments _Arguments)
         {
-            var Invalid_Expected = "Invalid argument. Expected: login | list-users | list-registered-email-addresses | create-user | get-user-info | update-user-info | delete-user | list-access-methods | create-access-method | delete-access-method | list-base-access-rights | upsert-base-access-right  | delete-base-access-right | grant-base-access-rights-to | add-final-access-right | get-final-access-rights | update-final-access-right | delete-final-access-right";
+            var Invalid_Expected = "Invalid argument. Check -help-";
 
             if (_Arguments.First.Value.ArgumentType != Argument.Type.Unary)
                 return Utilities.Error(Invalid_Expected + "; given argument is: " + _Arguments.First.Value.ToString());
