@@ -12,7 +12,7 @@ using Newtonsoft.Json.Linq;
 namespace SDK.Versions.V_0_1
 {
     /// <summary>
-    /// file upload-raw-file sourcePath=\"...\" modelId=\"...\" revisionIndex=\"...\" versionIndex=\"...\" fileEntryName=\"...\" fileType=\"...\" dataSource=\"...\" [zipMainAssemblyFileNameIfAny=\"...\"]
+    /// file upload-raw-file sourcePath=\"...\" modelId=\"...\" revisionIndex=\"...\" fileEntryName=\"...\" fileType=\"...\" dataSource=\"...\" [zipMainAssemblyFileNameIfAny=\"...\"]
     /// </summary>
     public class File_UploadRawFile : Command_0_1
     {
@@ -22,11 +22,11 @@ namespace SDK.Versions.V_0_1
             {
                 new List<Argument>()
                 {
-                    new BinaryArgument("sourcePath"), new BinaryArgument("modelId"), new BinaryArgument("revisionIndex"), new BinaryArgument("versionIndex"), new BinaryArgument("fileEntryName"), new BinaryArgument("fileType"), new BinaryArgument("dataSource")
+                    new BinaryArgument("sourcePath"), new BinaryArgument("modelId"), new BinaryArgument("revisionIndex"), new BinaryArgument("fileEntryName"), new BinaryArgument("fileType"), new BinaryArgument("dataSource")
                 },
                 new List<Argument>()
                 {
-                    new BinaryArgument("sourcePath"), new BinaryArgument("modelId"), new BinaryArgument("revisionIndex"), new BinaryArgument("versionIndex"), new BinaryArgument("fileEntryName"), new BinaryArgument("fileType"), new BinaryArgument("dataSource"), new BinaryArgument("zipMainAssemblyFileNameIfAny")
+                    new BinaryArgument("sourcePath"), new BinaryArgument("modelId"), new BinaryArgument("revisionIndex"), new BinaryArgument("fileEntryName"), new BinaryArgument("fileType"), new BinaryArgument("dataSource"), new BinaryArgument("zipMainAssemblyFileNameIfAny")
                 }
             }))
 
@@ -47,14 +47,6 @@ namespace SDK.Versions.V_0_1
                 }
                 _Arguments.RemoveFirst();
 
-                if (!int.TryParse((_Arguments.First.Value as BinaryArgument).Value, out int VersionIndex) || VersionIndex < 0)
-                {
-                    bErrorOccuredInChildConstructor = true;
-                    Utilities.Error("Version index must be a natural number.");
-                    return;
-                }
-                _Arguments.RemoveFirst();
-
                 var Request = new JObject
                 {
                     ["generateUploadUrl"] = true,
@@ -68,7 +60,7 @@ namespace SDK.Versions.V_0_1
                     Request["zipMainAssemblyFileNameIfAny"] = (_Arguments.First.Next.Next.Next.Value as BinaryArgument).Value;
                 }
 
-                CreatedRequest = new ApiHttpRequest(BaseApiUrl, "/file/models/" + ModelID + "/revisions/" + RevisionIndex + "/versions/" + VersionIndex + "/raw").Post(Request);
+                CreatedRequest = new ApiHttpRequest(BaseApiUrl, "/file/models/" + ModelID + "/revisions/" + RevisionIndex + "/raw").Post(Request);
             }
         }
 
@@ -178,7 +170,7 @@ namespace SDK.Versions.V_0_1
         {
             return new List<(int, string)>
             {
-                (2, "file upload-raw-file sourcePath=\"...\" modelId=\"...\" revisionIndex=\"...\" versionIndex=\"...\" fileEntryName=\"...\" fileType=\"...\" dataSource=\"...\" [zipMainAssemblyFileNameIfAny=\"...\"]"),
+                (2, "file upload-raw-file sourcePath=\"...\" modelId=\"...\" revisionIndex=\"...\" fileEntryName=\"...\" fileType=\"...\" dataSource=\"...\" [zipMainAssemblyFileNameIfAny=\"...\"]"),
                 (0, "\tdataSource is name of the software the CAD file has been designed in. Example: Aveva, Solidworks etc."),
                 (0, "\n")
             };
