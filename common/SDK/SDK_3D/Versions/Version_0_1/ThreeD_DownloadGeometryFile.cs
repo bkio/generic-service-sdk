@@ -3,11 +3,11 @@
 namespace SDK.Versions.V_0_1
 {
     /// <summary>
-    /// file download-geometry-file destinationPath=\"...\" modelId=\"...\" revisionIndex=\"...\"
+    /// 3d download-geometry-file destinationPath=\"...\" modelId=\"...\" revisionIndex=\"...\"
     /// </summary>
-    internal class File_DownloadGeometryFile : File_DownloadOperationBase
+    internal class ThreeD_DownloadGeometryFile : ThreeD_DownloadOperationBase
     {
-        public File_DownloadGeometryFile(Arguments _Arguments) : base(_Arguments, "/geometry") { }
+        public ThreeD_DownloadGeometryFile(Arguments _Arguments) : base(_Arguments, "/geometry") { }
 
         public override string GetCommandName()
         {

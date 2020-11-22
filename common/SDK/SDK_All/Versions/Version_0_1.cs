@@ -125,9 +125,9 @@ namespace SDK.Versions
                 }
             };
 
-            //set or auth or file
+            //set or auth or 3d
             if (_Arguments.First.Value.ArgumentType != Argument.Type.Unary) 
-                return Utilities.Error("Invalid argument. Expected: set, auth, file, custom-procedures; given argument is: " + _Arguments.First.Value.ToString());
+                return Utilities.Error("Invalid argument. Expected: set, auth, 3d; given argument is: " + _Arguments.First.Value.ToString());
 
             var Current = (_Arguments.First.Value as UnaryArgument).Value;
 
@@ -140,12 +140,10 @@ namespace SDK.Versions
                     return OperateSetCommands(_Arguments);
                 case "auth":
                     return OperateCommands(_Arguments);
-                case "file":
-                    return OperateCommands(_Arguments);
-                case "custom-procedures":
+                case "3d":
                     return OperateCommands(_Arguments);
                 default:
-                    return Utilities.Error("Invalid argument. Expected: set or auth or file; given argument is: " + _Arguments.First.Value.ToString());
+                    return Utilities.Error("Invalid argument. Expected: set or auth or 3d; given argument is: " + _Arguments.First.Value.ToString());
             }
         }
 

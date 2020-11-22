@@ -7,11 +7,11 @@ using Newtonsoft.Json.Linq;
 namespace SDK.Versions.V_0_1
 {
     /// <summary>
-    /// file delete-model modelId=\"...\"
+    /// 3d get-model-info modelId=\"...\"
     /// </summary>
-    public class File_DeleteModel : Command_0_1
+    public class ThreeD_GetModelInfo : Command_0_1
     {
-        public File_DeleteModel(Arguments _Arguments)
+        public ThreeD_GetModelInfo(Arguments _Arguments)
 
             : base(_Arguments, CheckArguments(out bool bParseable, out int AlternativeIx, _Arguments, new List<List<Argument>>()
             {
@@ -27,20 +27,20 @@ namespace SDK.Versions.V_0_1
                 var ModelID = (_Arguments.First.Value as BinaryArgument).Value;
                 _Arguments.RemoveFirst();
 
-                CreatedRequest = new ApiHttpRequest(BaseApiUrl, "/file/models/" + ModelID).Delete();
+                CreatedRequest = new ApiHttpRequest(BaseApiUrl, "/3d/models/" + ModelID).Get();
             }
         }
 
         public override string GetCommandName()
         {
-            return "delete-model";
+            return "get-model-info";
         }
 
         public override List<(int, string)> GetHelpLines()
         {
             return new List<(int, string)>
             {
-                (2, "file delete-model modelId=\"...\""),
+                (2, "3d get-model-info modelId=\"...\""),
                 (0, "\n")
             };
         }

@@ -1,16 +1,17 @@
 ﻿/// MIT License, Copyright Burak Kara, burak@burak.io, https://en.wikipedia.org/wiki/MIT_License
 
 using System.Collections.Generic;
+using Newtonsoft.Json.Linq;
 
 
 namespace SDK.Versions.V_0_1
 {
     /// <summary>
-    /// file list-revisions modelId=\"...\"
+    /// 3d delete-model modelId=\"...\"
     /// </summary>
-    public class File_ListRevisions : Command_0_1
+    public class ThreeD_DeleteModel : Command_0_1
     {
-        public File_ListRevisions(Arguments _Arguments)
+        public ThreeD_DeleteModel(Arguments _Arguments)
 
             : base(_Arguments, CheckArguments(out bool bParseable, out int AlternativeIx, _Arguments, new List<List<Argument>>()
             {
@@ -26,20 +27,20 @@ namespace SDK.Versions.V_0_1
                 var ModelID = (_Arguments.First.Value as BinaryArgument).Value;
                 _Arguments.RemoveFirst();
 
-                CreatedRequest = new ApiHttpRequest(BaseApiUrl, "/file/models/" + ModelID + "/revisions").Get();
+                CreatedRequest = new ApiHttpRequest(BaseApiUrl, "/3d/models/" + ModelID).Delete();
             }
         }
 
         public override string GetCommandName()
         {
-            return "list-revisions";
+            return "delete-model";
         }
 
         public override List<(int, string)> GetHelpLines()
         {
             return new List<(int, string)>
             {
-                (2, "file list-revisions modelId=\"...\""),
+                (2, "3d delete-model modelId=\"...\""),
                 (0, "\n")
             };
         }

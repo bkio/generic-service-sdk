@@ -10,9 +10,9 @@ using Newtonsoft.Json.Linq;
 
 namespace SDK.Versions.V_0_1
 {
-    public class File_DownloadOperationBase : Command_0_1
+    public class ThreeD_DownloadOperationBase : Command_0_1
     {
-        protected File_DownloadOperationBase(Arguments _Arguments, string _UrlAfterVersionIxPath)
+        protected ThreeD_DownloadOperationBase(Arguments _Arguments, string _UrlAfterVersionIxPath)
 
             : base(_Arguments, CheckArguments(out bool bParseable, out int AlternativeIx, _Arguments, new List<List<Argument>>()
             {
@@ -39,11 +39,11 @@ namespace SDK.Versions.V_0_1
                 }
                 _Arguments.RemoveFirst();
 
-                CreatedRequest = new ApiHttpRequest(BaseApiUrl, "/file/models/" + ModelID + "/revisions/" + RevisionIndex + _UrlAfterVersionIxPath).Get();
+                CreatedRequest = new ApiHttpRequest(BaseApiUrl, "/3d/models/" + ModelID + "/revisions/" + RevisionIndex + _UrlAfterVersionIxPath).Get();
             }
         }
 
-        public File_DownloadOperationBase(Arguments _Arguments)
+        public ThreeD_DownloadOperationBase(Arguments _Arguments)
            : base(_Arguments, false)
         {
 
@@ -140,10 +140,10 @@ namespace SDK.Versions.V_0_1
         {
             return new List<(int, string)>
             {
-                (2, "file download-raw-file destinationPath=\"...\" modelId=\"...\" revisionIndex=\"...\""),
-                (2, "file download-hierarchy-file destinationPath=\"...\" modelId=\"...\" revisionIndex=\"...\""),
-                (2, "file download-geometry-file destinationPath=\"...\" modelId=\"...\" revisionIndex=\"...\""),
-                (2, "file download-metadata-file destinationPath=\"...\" modelId=\"...\" revisionIndex=\"...\""),
+                (2, "3d download-raw-file destinationPath=\"...\" modelId=\"...\" revisionIndex=\"...\""),
+                (2, "3d download-hierarchy-file destinationPath=\"...\" modelId=\"...\" revisionIndex=\"...\""),
+                (2, "3d download-geometry-file destinationPath=\"...\" modelId=\"...\" revisionIndex=\"...\""),
+                (2, "3d download-metadata-file destinationPath=\"...\" modelId=\"...\" revisionIndex=\"...\""),
                 (0, "\n")
             };
         }

@@ -9,7 +9,7 @@
   <ItemGroup>
     <ProjectReference Include="..\SDK_Auth\SDK_Auth.csproj" />
     <ProjectReference Include="..\SDK_Core\SDK_Core.csproj" />
-    <ProjectReference Include="..\SDK_File\SDK_File.csproj" />
+    <ProjectReference Include="..\SDK_3D\SDK_3D.csproj" />
   </ItemGroup>
 
 </Project>

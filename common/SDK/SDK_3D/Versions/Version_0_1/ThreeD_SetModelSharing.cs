@@ -8,11 +8,11 @@ using Newtonsoft.Json.Linq;
 namespace SDK.Versions.V_0_1
 {
     /// <summary>
-    /// file set-model-sharing modelId=\"...\" [shareWithAll] [userIds=\"...\"] [emails=\"...\"]
+    /// 3d set-model-sharing modelId=\"...\" [shareWithAll] [userIds=\"...\"] [emails=\"...\"]
     /// </summary>
-    public class File_SetModelSharing : Command_0_1
+    public class ThreeD_SetModelSharing : Command_0_1
     {
-        public File_SetModelSharing(Arguments _Arguments)
+        public ThreeD_SetModelSharing(Arguments _Arguments)
 
             : base(_Arguments, CheckArguments(out bool bParseable, out int AlternativeIx, _Arguments, new List<List<Argument>>()
             {
@@ -84,7 +84,7 @@ namespace SDK.Versions.V_0_1
                     }
                 }
 
-                CreatedRequest = new ApiHttpRequest(BaseApiUrl, "/file/models/" + ModelID + "/sharing").Post(Request);
+                CreatedRequest = new ApiHttpRequest(BaseApiUrl, "/3d/models/" + ModelID + "/sharing").Post(Request);
             }
         }
 
@@ -97,7 +97,7 @@ namespace SDK.Versions.V_0_1
         {
             return new List<(int, string)>
             {
-                (2, "file set-model-sharing modelId=\"...\" [shareWithAll] [userIds=\"...\"] [emails=\"...\"]"),
+                (2, "3d set-model-sharing modelId=\"...\" [shareWithAll] [userIds=\"...\"] [emails=\"...\"]"),
                 (0, "\tshareWithAll: If provided; the model will be shared with all in tenant; also do not provide userIds or emails."),
                 (0, "\tYou can provide different(or same) email/userId of users to the userIds and emails field; they are parsed/processed separately."),
                 (0, "\tuserIds: Comma-separated user-ids"),

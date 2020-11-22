@@ -6,17 +6,17 @@ using System.Collections.Generic;
 namespace SDK.Versions.V_0_1
 {
     /// <summary>
-    /// file get-hierarchy-node modelId=\"...\" revisionIndex=\"...\" nodeId=\"...\"
+    /// 3d delete-revision modelId=\"...\" revisionIndex=\"...\"
     /// </summary>
-    public class File_GetHierarchyNode : Command_0_1
+    public class ThreeD_DeleteRevision : Command_0_1
     {
-        public File_GetHierarchyNode(Arguments _Arguments)
+        public ThreeD_DeleteRevision(Arguments _Arguments)
 
             : base(_Arguments, CheckArguments(out bool bParseable, out int AlternativeIx, _Arguments, new List<List<Argument>>()
             {
                 new List<Argument>()
                 {
-                    new BinaryArgument("modelId"), new BinaryArgument("revisionIndex"), new BinaryArgument("nodeId")
+                    new BinaryArgument("modelId"), new BinaryArgument("revisionIndex")
                 }
             }))
 
@@ -34,28 +34,20 @@ namespace SDK.Versions.V_0_1
                 }
                 _Arguments.RemoveFirst();
 
-                if (!ulong.TryParse((_Arguments.First.Value as BinaryArgument).Value, out ulong NodeID) || NodeID < 0)
-                {
-                    bErrorOccuredInChildConstructor = true;
-                    Utilities.Error("Node ID must be a natural number.");
-                    return;
-                }
-                _Arguments.RemoveFirst();
-
-                CreatedRequest = new ApiHttpRequest(BaseApiUrl, "/file/models/" + ModelID + "/revisions/" + RevisionIndex + "/hierarchy/nodes/" + NodeID).Get();
+                CreatedRequest = new ApiHttpRequest(BaseApiUrl, "/3d/models/" + ModelID + "/revisions/" + RevisionIndex).Delete();
             }
         }
 
         public override string GetCommandName()
         {
-            return "get-hierarchy-node";
+            return "delete-revision";
         }
 
         public override List<(int, string)> GetHelpLines()
         {
             return new List<(int, string)>
             {
-                (2, "file get-hierarchy-node modelId=\"...\" revisionIndex=\"...\" nodeId=\"...\""),
+                (2, "3d delete-revision modelId=\"...\" revisionIndex=\"...\""),
                 (0, "\n")
             };
         }

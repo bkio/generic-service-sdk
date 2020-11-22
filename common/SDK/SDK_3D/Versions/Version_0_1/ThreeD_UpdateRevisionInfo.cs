@@ -10,11 +10,11 @@ using Newtonsoft.Json.Linq;
 namespace SDK.Versions.V_0_1
 {
     /// <summary>
-    /// file update-revision-info modelId=\"...\" revisionIndex=\"...\" name=\"...\" [commentsPath=\"...\"]
+    /// 3d update-revision-info modelId=\"...\" revisionIndex=\"...\" name=\"...\" [commentsPath=\"...\"]
     /// </summary>
-    public class File_UpdateRevisionInfo : Command_0_1
+    public class ThreeD_UpdateRevisionInfo : Command_0_1
     {
-        public File_UpdateRevisionInfo(Arguments _Arguments)
+        public ThreeD_UpdateRevisionInfo(Arguments _Arguments)
 
             : base(_Arguments, CheckArguments(out bool bParseable, out int AlternativeIx, _Arguments, new List<List<Argument>>()
             {
@@ -89,7 +89,7 @@ namespace SDK.Versions.V_0_1
                     Request["revisionComments"] = Comments;
                 }
 
-                CreatedRequest = new ApiHttpRequest(BaseApiUrl, "/file/models/" + ModelID + "/revisions/" + RevisionIndex).Post(Request);
+                CreatedRequest = new ApiHttpRequest(BaseApiUrl, "/3d/models/" + ModelID + "/revisions/" + RevisionIndex).Post(Request);
             }
         }
 
@@ -102,7 +102,7 @@ namespace SDK.Versions.V_0_1
         {
             return new List<(int, string)>
             {
-                (2, "file update-revision-info modelId=\"...\" revisionIndex=\"...\" name=\"...\" [commentsPath=\"...\"]"),
+                (2, "3d update-revision-info modelId=\"...\" revisionIndex=\"...\" name=\"...\" [commentsPath=\"...\"]"),
                 (0, "\n")
             };
         }

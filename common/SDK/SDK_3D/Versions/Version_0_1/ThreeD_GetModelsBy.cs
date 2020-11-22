@@ -7,11 +7,11 @@ using System.Net;
 namespace SDK.Versions.V_0_1
 {
     /// <summary>
-    /// file get-models-by [userId=\"...\"] metadataKey=\"...\" [metadataValues=\"...\"]
+    /// 3d get-models-by [userId=\"...\"] metadataKey=\"...\" [metadataValues=\"...\"]
     /// </summary>
-    public class File_GetModelsBy : Command_0_1
+    public class ThreeD_GetModelsBy : Command_0_1
     {
-        public File_GetModelsBy(Arguments _Arguments)
+        public ThreeD_GetModelsBy(Arguments _Arguments)
 
             : base(_Arguments, CheckArguments(out bool bParseable, out int AlternativeIx, _Arguments, new List<List<Argument>>()
             {
@@ -59,11 +59,11 @@ namespace SDK.Versions.V_0_1
                 if (AlternativeIx == 1 || AlternativeIx == 3)
                 {
                     var MetadataValuesUrlEncoded = WebUtility.UrlEncode((_Arguments.First.Value as BinaryArgument).Value);
-                    CreatedRequest = new ApiHttpRequest(BaseApiUrl, "/file/get_models_by/user_id/" + UserID + "/metadata_key/" + MetadataKeyUrlEncoded + "/metadata_values/" + MetadataValuesUrlEncoded).Get();
+                    CreatedRequest = new ApiHttpRequest(BaseApiUrl, "/3d/models/get_models_by/user_id/" + UserID + "/metadata_key/" + MetadataKeyUrlEncoded + "/metadata_values/" + MetadataValuesUrlEncoded).Get();
                 }
                 else
                 {
-                    CreatedRequest = new ApiHttpRequest(BaseApiUrl, "/file/get_models_by/user_id/" + UserID + "/metadata_key/" + MetadataKeyUrlEncoded).Get();
+                    CreatedRequest = new ApiHttpRequest(BaseApiUrl, "/3d/models/get_models_by/user_id/" + UserID + "/metadata_key/" + MetadataKeyUrlEncoded).Get();
                 }
             }
         }
@@ -77,7 +77,7 @@ namespace SDK.Versions.V_0_1
         {
             return new List<(int, string)>
             {
-                (2, "file get-models-by [userId=\"...\"] metadataKey=\"...\" [metadataValues=\"...\"]"),
+                (2, "3d get-models-by [userId=\"...\"] metadataKey=\"...\" [metadataValues=\"...\"]"),
                 (0, "\tmetadataValues: Values should be separated by [[DELIM]] For example; MyValue1[[DELIM]]MyOtherValue 2[[DELIM]]Third one."),
                 (0, "\n")
             };

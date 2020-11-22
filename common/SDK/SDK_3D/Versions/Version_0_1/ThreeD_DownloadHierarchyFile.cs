@@ -3,11 +3,11 @@
 namespace SDK.Versions.V_0_1
 {
     /// <summary>
-    /// file download-hierarchy-file destinationPath=\"...\" modelId=\"...\" revisionIndex=\"...\"
+    /// 3d download-hierarchy-file destinationPath=\"...\" modelId=\"...\" revisionIndex=\"...\"
     /// </summary>
-    internal class File_DownloadHierarchyFile : File_DownloadOperationBase
+    internal class ThreeD_DownloadHierarchyFile : ThreeD_DownloadOperationBase
     {
-        public File_DownloadHierarchyFile(Arguments _Arguments) : base(_Arguments, "/hierarchy") { }
+        public ThreeD_DownloadHierarchyFile(Arguments _Arguments) : base(_Arguments, "/hierarchy") { }
 
         public override string GetCommandName()
         {

@@ -6,11 +6,11 @@ using System.Collections.Generic;
 namespace SDK.Versions.V_0_1
 {
     /// <summary>
-    /// file get-geometry-node modelId=\"...\" revisionIndex=\"...\" nodeId=\"...\"
+    /// 3d get-geometry-node modelId=\"...\" revisionIndex=\"...\" nodeId=\"...\"
     /// </summary>
-    public class File_GetGeometryNode : Command_0_1
+    public class ThreeD_GetGeometryNode : Command_0_1
     {
-        public File_GetGeometryNode(Arguments _Arguments)
+        public ThreeD_GetGeometryNode(Arguments _Arguments)
 
             : base(_Arguments, CheckArguments(out bool bParseable, out int AlternativeIx, _Arguments, new List<List<Argument>>()
             {
@@ -42,7 +42,7 @@ namespace SDK.Versions.V_0_1
                 }
                 _Arguments.RemoveFirst();
 
-                CreatedRequest = new ApiHttpRequest(BaseApiUrl, "/file/models/" + ModelID + "/revisions/" + RevisionIndex + "/geometry/nodes/" + NodeID).Get();
+                CreatedRequest = new ApiHttpRequest(BaseApiUrl, "/3d/models/" + ModelID + "/revisions/" + RevisionIndex + "/geometry/nodes/" + NodeID).Get();
             }
         }
 
@@ -55,7 +55,7 @@ namespace SDK.Versions.V_0_1
         {
             return new List<(int, string)>
             {
-                (2, "file get-geometry-node modelId=\"...\" revisionIndex=\"...\" nodeId=\"...\""),
+                (2, "3d get-geometry-node modelId=\"...\" revisionIndex=\"...\" nodeId=\"...\""),
                 (0, "\n")
             };
         }

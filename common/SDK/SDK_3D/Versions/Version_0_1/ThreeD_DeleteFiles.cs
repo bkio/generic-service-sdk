@@ -2,21 +2,20 @@
 
 using System.Collections.Generic;
 
-
 namespace SDK.Versions.V_0_1
 {
     /// <summary>
-    /// file get-metadata-node modelId=\"...\" revisionIndex=\"...\" nodeId=\"...\"
+    /// 3d delete-files modelId=\"...\" revisionIndex=\"...\"
     /// </summary>
-    public class File_GetMetadataNode : Command_0_1
+    public class ThreeD_DeleteFiles : Command_0_1
     {
-        public File_GetMetadataNode(Arguments _Arguments)
+        public ThreeD_DeleteFiles(Arguments _Arguments)
 
             : base(_Arguments, CheckArguments(out bool bParseable, out int AlternativeIx, _Arguments, new List<List<Argument>>()
             {
                 new List<Argument>()
                 {
-                    new BinaryArgument("modelId"), new BinaryArgument("revisionIndex"), new BinaryArgument("nodeId")
+                    new BinaryArgument("modelId"), new BinaryArgument("revisionIndex")
                 }
             }))
 
@@ -33,29 +32,22 @@ namespace SDK.Versions.V_0_1
                     return;
                 }
                 _Arguments.RemoveFirst();
-
-                if (!ulong.TryParse((_Arguments.First.Value as BinaryArgument).Value, out ulong NodeID) || NodeID < 0)
-                {
-                    bErrorOccuredInChildConstructor = true;
-                    Utilities.Error("Node ID must be a natural number.");
-                    return;
-                }
-                _Arguments.RemoveFirst();
-
-                CreatedRequest = new ApiHttpRequest(BaseApiUrl, "/file/models/" + ModelID + "/revisions/" + RevisionIndex + "/metadata/nodes/" + NodeID).Get();
+                
+                //Deletes all files; raw, processed.
+                CreatedRequest = new ApiHttpRequest(BaseApiUrl, "/3d/models/" + ModelID + "/revisions/" + RevisionIndex + "/raw").Delete();
             }
         }
 
         public override string GetCommandName()
         {
-            return "get-metadata-node";
+            return "delete-files";
         }
 
         public override List<(int, string)> GetHelpLines()
         {
             return new List<(int, string)>
             {
-                (2, "file get-metadata-node modelId=\"...\" revisionIndex=\"...\" nodeId=\"...\""),
+                (2, "3d delete-files modelId=\"...\" revisionIndex=\"...\""),
                 (0, "\n")
             };
         }

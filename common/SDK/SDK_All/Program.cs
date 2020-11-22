@@ -14,7 +14,7 @@ namespace SDK
             Version_0_1.LoadCommandAssemblies(new string[] 
             {
                 "SDK_Auth.dll",
-                "SDK_File.dll"
+                "SDK_3D.dll"
             });
             var Result = Main_Internal(_Args);
             if (Result == Utilities.SUCCESS_NO_JSON_OUTPUT_EXCEPTION)

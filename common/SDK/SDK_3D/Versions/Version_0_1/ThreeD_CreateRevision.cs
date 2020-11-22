@@ -9,11 +9,11 @@ using Newtonsoft.Json.Linq;
 namespace SDK.Versions.V_0_1
 {
     /// <summary>
-    /// file create-revision modelId=\"...\" name=\"...\" [commentsPath=\"...\"]
+    /// 3d create-revision modelId=\"...\" name=\"...\" [commentsPath=\"...\"]
     /// </summary>
-    public class File_CreateRevision : Command_0_1
+    public class ThreeD_CreateRevision : Command_0_1
     {
-        public File_CreateRevision(Arguments _Arguments)
+        public ThreeD_CreateRevision(Arguments _Arguments)
 
             : base(_Arguments, CheckArguments(out bool bParseable, out int AlternativeIx, _Arguments, new List<List<Argument>>()
             {
@@ -80,7 +80,7 @@ namespace SDK.Versions.V_0_1
                     Request["revisionComments"] = Comments;
                 }
 
-                CreatedRequest = new ApiHttpRequest(BaseApiUrl, "/file/models/" + ModelID + "/revisions").Put(Request);
+                CreatedRequest = new ApiHttpRequest(BaseApiUrl, "/3d/models/" + ModelID + "/revisions").Put(Request);
             }
         }
 
@@ -93,7 +93,7 @@ namespace SDK.Versions.V_0_1
         {
             return new List<(int, string)>
             {
-                (2, "file create-revision modelId=\"...\" name=\"...\" [commentsPath=\"...\"]"),
+                (2, "3d create-revision modelId=\"...\" name=\"...\" [commentsPath=\"...\"]"),
                 (0, "\n")
             };
         }

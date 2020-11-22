@@ -6,48 +6,47 @@ using System.IO;
 using System.Net;
 using Newtonsoft.Json.Linq;
 
+
 namespace SDK.Versions.V_0_1
 {
     /// <summary>
-    /// file create-model name=\"...\" [metadataPath=\"...\"] [commentsPath=\"...\"]
-    ///     metadataPath: File path to the model metadata json structure.
-    ///     Example content: [ { \"metadataKey\": \"example\", \"metadata-value\": [\"value1\", \"value2\"] } ]
-    ///     commentsPath: File path to the basic model comments text file. Each line in the file will be parsed as a new comment entry.
+    /// 3d update-model-info modelId=\"...\" name=\"...\" [metadataPath=\"...\"] [commentsPath=\"...\"]
     /// </summary>
-    public class File_CreateModel : Command_0_1
+    public class ThreeD_UpdateModelInfo : Command_0_1
     {
-        public File_CreateModel(Arguments _Arguments)
+        public ThreeD_UpdateModelInfo(Arguments _Arguments)
 
             : base(_Arguments, CheckArguments(out bool bParseable, out int AlternativeIx, _Arguments, new List<List<Argument>>()
             {
                 new List<Argument>()
                 {
-                    new BinaryArgument("name")
+                    new BinaryArgument("modelId"), new BinaryArgument("name")
                 },
                 new List<Argument>()
                 {
-                    new BinaryArgument("name"), new BinaryArgument("metadataPath")
+                    new BinaryArgument("modelId"), new BinaryArgument("name"), new BinaryArgument("metadataPath")
                 },
                 new List<Argument>()
                 {
-                    new BinaryArgument("name"), new BinaryArgument("metadataPath"), new BinaryArgument("commentsPath")
+                    new BinaryArgument("modelId"), new BinaryArgument("name"), new BinaryArgument("metadataPath"), new BinaryArgument("commentsPath")
                 },
                 new List<Argument>()
                 {
-                    new BinaryArgument("name"), new BinaryArgument("commentsPath")
+                    new BinaryArgument("modelId"), new BinaryArgument("name"), new BinaryArgument("commentsPath")
                 }
             }))
 
         {
             if (bParseable)
             {
-                CreatedRequest = new ApiHttpRequest(BaseApiUrl, "/file/models");
-
-                string MetadataFilePath = null, MetadataFileContent = null;
-                string CommentsFilePath = null, CommentsFileContent = null;
+                var ModelID = (_Arguments.First.Value as BinaryArgument).Value;
+                _Arguments.RemoveFirst();
 
                 var ModelName = (_Arguments.First.Value as BinaryArgument).Value;
                 _Arguments.RemoveFirst();
+
+                string MetadataFilePath = null, MetadataFileContent = null;
+                string CommentsFilePath = null, CommentsFileContent = null;
 
                 if (AlternativeIx == 1)
                 {
@@ -78,7 +77,7 @@ namespace SDK.Versions.V_0_1
                     {
                         Utilities.Error("File read operation has failed with: " + e.Message + ", please check the SDK has access to write/read the file path.");
                     }
-                        
+
                     bErrorOccuredInChildConstructor = true;
                     return;
                 }
@@ -122,25 +121,22 @@ namespace SDK.Versions.V_0_1
                     Request["modelComments"] = Comments;
                 }
 
-                CreatedRequest.Put(Request);
+                CreatedRequest = new ApiHttpRequest(BaseApiUrl, "/3d/models/" + ModelID).Post(Request);
             }
         }
 
         public override string GetCommandName()
         {
-            return "create-model";
+            return "update-model-info";
         }
 
         public override List<(int, string)> GetHelpLines()
         {
             return new List<(int, string)>
             {
-                (2, "file create-model name=\"...\" [metadataPath=\"...\"] [commentsPath=\"...\"]"),
-                (0, "\tmetadataPath: File path to the model metadata json structure."),
-                (0, "\tExample content: [ { \"metadataKey\": \"example\", \"metadataValues\": [\"value1\", \"value2\"] } ]"),
-                (0, "\tcommentsPath: File path to the basic model comments text file. Each line in the file will be parsed as a new comment entry."),
+                (2, "3d update-model-info modelId=\"...\" name=\"...\" [metadataPath=\"...\"] [commentsPath=\"...\"]"),
                 (0, "\n")
             };
         }
-    }
+    } 
 }

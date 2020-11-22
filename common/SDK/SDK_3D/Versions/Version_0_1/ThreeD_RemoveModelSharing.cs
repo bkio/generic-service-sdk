@@ -8,11 +8,11 @@ using Newtonsoft.Json.Linq;
 namespace SDK.Versions.V_0_1
 {
     /// <summary>
-    /// file remove-model-sharing modelId=\"...\" [userId=\"...\"]
+    /// 3d remove-model-sharing modelId=\"...\" [userId=\"...\"]
     /// </summary>
-    public class File_RemoveModelSharing : Command_0_1
+    public class ThreeD_RemoveModelSharing : Command_0_1
     {
-        public File_RemoveModelSharing(Arguments _Arguments)
+        public ThreeD_RemoveModelSharing(Arguments _Arguments)
 
             : base(_Arguments, CheckArguments(out bool bParseable, out int AlternativeIx, _Arguments, new List<List<Argument>>()
             {
@@ -50,7 +50,7 @@ namespace SDK.Versions.V_0_1
                     _Arguments.RemoveFirst();
                 }
 
-                CreatedRequest = new ApiHttpRequest(BaseApiUrl, "/file/models/" + ModelID + "/remove_sharing_from/user_id/" + UserID).Delete();
+                CreatedRequest = new ApiHttpRequest(BaseApiUrl, "/3d/models/" + ModelID + "/remove_sharing_from/user_id/" + UserID).Delete();
             }
         }
 
@@ -63,7 +63,7 @@ namespace SDK.Versions.V_0_1
         {
             return new List<(int, string)>
             {
-                (2, "file remove-model-sharing modelId=\"...\" [userId=\"...\"]"),
+                (2, "3d remove-model-sharing modelId=\"...\" [userId=\"...\"]"),
                 (0, "\n")
             };
         }

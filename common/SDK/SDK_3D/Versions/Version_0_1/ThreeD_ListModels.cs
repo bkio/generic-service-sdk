@@ -6,28 +6,28 @@ using System.Collections.Generic;
 namespace SDK.Versions.V_0_1
 {
     /// <summary>
-    /// file list-globally-shared-models
+    /// 3d list-models
     /// </summary>
-    public class File_ListGloballySharedModels : Command_0_1
+    public class ThreeD_ListModels : Command_0_1
     {
-        public File_ListGloballySharedModels(Arguments _Arguments) : base(_Arguments, _Arguments.Count == 0)
+        public ThreeD_ListModels(Arguments _Arguments) : base(_Arguments, _Arguments.Count == 0)
         {
             if (_Arguments.Count == 0)
             {
-                CreatedRequest = new ApiHttpRequest(BaseApiUrl, "/file/models/globally_shared").Get();
+                CreatedRequest = new ApiHttpRequest(BaseApiUrl, "/3d/models").Get();
             }
         }
 
         public override string GetCommandName()
         {
-            return "list-globally-shared-models";
+            return "list-models";
         }
 
         public override List<(int, string)> GetHelpLines()
         {
             return new List<(int, string)>
             {
-                (2, "file list-globally-shared-models"),
+                (2, "3d list-models"),
                 (0, "\n")
             };
         }

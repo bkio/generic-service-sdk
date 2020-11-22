@@ -3,11 +3,11 @@
 namespace SDK.Versions.V_0_1
 {
     /// <summary>
-    /// file download-metadata-file destinationPath=\"...\" modelId=\"...\" revisionIndex=\"...\"
+    /// 3d download-metadata-file destinationPath=\"...\" modelId=\"...\" revisionIndex=\"...\"
     /// </summary>
-    internal class File_DownloadMetadataFile : File_DownloadOperationBase
+    internal class ThreeD_DownloadMetadataFile : ThreeD_DownloadOperationBase
     {
-        public File_DownloadMetadataFile(Arguments _Arguments) : base(_Arguments, "/metadata") { }
+        public ThreeD_DownloadMetadataFile(Arguments _Arguments) : base(_Arguments, "/metadata") { }
 
         public override string GetCommandName()
         {

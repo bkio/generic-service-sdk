@@ -3,11 +3,11 @@
 namespace SDK.Versions.V_0_1
 {
     /// <summary>
-    /// file download-raw-file destinationPath=\"...\" modelId=\"...\" revisionIndex=\"...\"
+    /// 3d download-raw-file destinationPath=\"...\" modelId=\"...\" revisionIndex=\"...\"
     /// </summary>
-    internal class File_DownloadRawFile : File_DownloadOperationBase
+    internal class ThreeD_DownloadRawFile : ThreeD_DownloadOperationBase
     {
-        public File_DownloadRawFile(Arguments _Arguments) : base(_Arguments, "/raw") { }
+        public ThreeD_DownloadRawFile(Arguments _Arguments) : base(_Arguments, "/raw") { }
 
         public override string GetCommandName()
         {

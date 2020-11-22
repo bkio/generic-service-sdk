@@ -12,11 +12,11 @@ using Newtonsoft.Json.Linq;
 namespace SDK.Versions.V_0_1
 {
     /// <summary>
-    /// file upload-raw-file sourcePath=\"...\" modelId=\"...\" revisionIndex=\"...\" fileEntryName=\"...\" fileType=\"...\" dataSource=\"...\" [zipMainAssemblyFileNameIfAny=\"...\"]
+    /// 3d upload-raw-file sourcePath=\"...\" modelId=\"...\" revisionIndex=\"...\" fileEntryName=\"...\" fileType=\"...\" dataSource=\"...\" [zipMainAssemblyFileNameIfAny=\"...\"]
     /// </summary>
-    public class File_UploadRawFile : Command_0_1
+    public class ThreeD_UploadRawFile : Command_0_1
     {
-        public File_UploadRawFile(Arguments _Arguments)
+        public ThreeD_UploadRawFile(Arguments _Arguments)
 
             : base(_Arguments, CheckArguments(out bool bParseable, out int AlternativeIx, _Arguments, new List<List<Argument>>()
             {
@@ -60,7 +60,7 @@ namespace SDK.Versions.V_0_1
                     Request["zipMainAssemblyFileNameIfAny"] = (_Arguments.First.Next.Next.Next.Value as BinaryArgument).Value;
                 }
 
-                CreatedRequest = new ApiHttpRequest(BaseApiUrl, "/file/models/" + ModelID + "/revisions/" + RevisionIndex + "/raw").Post(Request);
+                CreatedRequest = new ApiHttpRequest(BaseApiUrl, "/3d/models/" + ModelID + "/revisions/" + RevisionIndex + "/raw").Post(Request);
             }
         }
 
@@ -170,7 +170,7 @@ namespace SDK.Versions.V_0_1
         {
             return new List<(int, string)>
             {
-                (2, "file upload-raw-file sourcePath=\"...\" modelId=\"...\" revisionIndex=\"...\" fileEntryName=\"...\" fileType=\"...\" dataSource=\"...\" [zipMainAssemblyFileNameIfAny=\"...\"]"),
+                (2, "3d upload-raw-file sourcePath=\"...\" modelId=\"...\" revisionIndex=\"...\" fileEntryName=\"...\" fileType=\"...\" dataSource=\"...\" [zipMainAssemblyFileNameIfAny=\"...\"]"),
                 (0, "\tdataSource is name of the software the CAD file has been designed in. Example: Aveva, Solidworks etc."),
                 (0, "\n")
             };
