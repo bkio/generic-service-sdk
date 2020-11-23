@@ -78,7 +78,7 @@ namespace SDK.Versions.V_0_1
             return new List<(int, string)>
             {
                 (2, "3d get-models-by [userId=\"...\"] metadataKey=\"...\" [metadataValues=\"...\"]"),
-                (0, "\tmetadataValues: Values should be separated by [[DELIM]] For example; MyValue1[[DELIM]]MyOtherValue 2[[DELIM]]Third one."),
+                (0, "\tmetadataValues: Values should be separated by __DELIM__ For example; MyValue1__DELIM__MyOtherValue 2__DELIM__Third one."),
                 (0, "\n")
             };
         }
