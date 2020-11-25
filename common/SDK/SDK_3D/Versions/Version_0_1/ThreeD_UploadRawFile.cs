@@ -4,7 +4,12 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Net;
+using System.Net.Http;
 using System.Threading;
+using Google.Api.Gax;
+using Google.Apis.Http;
+using Google.Apis.Upload;
+using Google.Cloud.Storage.V1;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
@@ -73,7 +78,75 @@ namespace SDK.Versions.V_0_1
             var UploadSignedUrl = (string)_ResultJson["fileUploadUrl"];
             var UploadContentType = (string)_ResultJson["fileUploadContentType"];
 
-            string InnerFailureMessage = "";
+            //Google multi-part upload
+            if (UploadSignedUrl.StartsWith("https://storage.googleapis.com/"))
+            {
+                if (!GoogleSignedUrlUpload(UploadSignedUrl, UploadContentType, out int FailureCode))
+                {
+                    return FailureCode;
+                }
+            }
+            else if (!OtherUrlUpload(UploadSignedUrl, UploadContentType, out int FailureCode))
+            {
+                return FailureCode;
+            }
+
+            return Utilities.Success(new JObject() { ["result"] = "success" }.ToString());
+        }
+
+        private bool GoogleSignedUrlUpload(string _UploadSignedUrl, string _UploadContentType, out int _FailureCode)
+        {
+            _FailureCode = 500;
+
+            HttpClient Client = null;
+
+            try
+            {
+                Client = new HttpClientFactory().CreateHttpClient(new CreateHttpClientArgs { ApplicationName = "ResumableUpload", GZipEnabled = true, GoogleApiClientHeader = DefaultGoogleApiClientHeader });
+                Client.DefaultRequestHeaders.TryAddWithoutValidation("Content-Type", _UploadContentType);
+
+                using (var FileReadStream = new FileStream(SourcePath, FileMode.Open, FileAccess.Read))
+                {
+                    var UploadRequest = SignedUrlResumableUpload.Create(_UploadSignedUrl, FileReadStream, new ResumableUploadOptions()
+                    {
+                        HttpClient = Client
+                    });
+                    var Result = UploadRequest.Upload();
+
+                    if (Result.Status == UploadStatus.Completed)
+                        return true;
+                    
+                    if (Result.Exception != null)
+                    {
+                        _FailureCode = Utilities.Error("Operation has failed. Status: " + Result.Status.ToString() + ", bytes sent: " + Result.BytesSent + " with message: " + Result.Exception.Message);
+                    }
+                    else
+                    {
+                        _FailureCode = Utilities.Error("Operation has failed. Status: " + Result.Status.ToString() + ", bytes sent: " + Result.BytesSent);
+                    }
+                    return false;
+                }
+            }
+            catch (Exception e)
+            {
+                _FailureCode = Utilities.Error("Operation has failed with: " + e.Message);
+                return false;
+            }
+            finally
+            {
+                try { Client?.Dispose(); } catch (Exception) { }
+            }
+        }
+        private static readonly string DefaultGoogleApiClientHeader = new VersionHeaderBuilder().AppendDotNetEnvironment().AppendAssemblyVersion("gdcl", typeof(ResumableUpload)).ToString();
+
+        private bool FailedChunkWait() { Thread.Sleep(1000); return true; }
+
+        private bool OtherUrlUpload(string _UploadSignedUrl, string _UploadContentType, out int _FailureCode)
+        {
+            _FailureCode = 500;
+
+            string ExhaustedLastErrorMessage = "";
+
             bool bUploadSucceed = true;
             int EntireUploadFailureCount = 0;
             do
@@ -82,11 +155,11 @@ namespace SDK.Versions.V_0_1
                 {
                     using (var FileReadStream = new FileStream(SourcePath, FileMode.Open, FileAccess.Read))
                     {
-                        var Request = (HttpWebRequest)WebRequest.Create(UploadSignedUrl);
+                        var Request = (HttpWebRequest)WebRequest.Create(_UploadSignedUrl);
                         Request.AllowReadStreamBuffering = false;
                         Request.AllowWriteStreamBuffering = false;
                         Request.Method = "PUT";
-                        Request.ContentType = UploadContentType;
+                        Request.ContentType = _UploadContentType;
                         Request.ContentLength = new FileInfo(SourcePath).Length;
                         Request.ServerCertificateValidationCallback = (a, b, c, d) => true;
 
@@ -108,7 +181,7 @@ namespace SDK.Versions.V_0_1
                                     catch (Exception e)
                                     {
                                         bSuccess = false;
-                                        InnerFailureMessage = e.Message;
+                                        ExhaustedLastErrorMessage = e.Message;
                                     }
 
                                 } while (!bSuccess && ++FailureCount < 60 && FailedChunkWait());
@@ -146,20 +219,22 @@ namespace SDK.Versions.V_0_1
                 {
                     if (e is FileNotFoundException)
                     {
-                        return Utilities.Error("File not found.");
+                        _FailureCode = Utilities.Error("File not found.");
+                        return false;
                     }
-                    return Utilities.Error("Operation has failed with: " + e.Message);
+                    _FailureCode = Utilities.Error("Operation has failed with: " + e.Message);
+                    return false;
                 }
 
             } while (!bUploadSucceed && ++EntireUploadFailureCount < 5 && FailedChunkWait());
 
             if (!bUploadSucceed)
             {
-                return Utilities.Error("Operation has exhausted retrying failed upload attempt: " + InnerFailureMessage);
+                _FailureCode = Utilities.Error("Operation has exhausted retrying failed upload attempt: " + (ExhaustedLastErrorMessage.Length > 0 ? ExhaustedLastErrorMessage : "-Empty-"));
+                return false;
             }
-            return Utilities.Success(new JObject() { ["result"] = "success" }.ToString());
+            return true;
         }
-        private bool FailedChunkWait() { Thread.Sleep(1000); return true; }
 
         public override string GetCommandName()
         {
